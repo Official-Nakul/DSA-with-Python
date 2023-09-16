@@ -66,17 +66,14 @@ class LinkedList:
         if self.head is None:
             raise Exception("List is Empty")
         ptr = self.head
-        flag = 0
         inx = 0
         while ptr:
             if val == ptr.data:
                 print(f"Value {ptr.data} is at Index {inx}")
-                flag = 1
                 return
             ptr = ptr.next
             inx += 1
-        if flag == 0:
-            print(f"{val} is not in the List")
+        print(f"{val} is not in the List")
 
 # ---------------------------- delete by Index --------------------------
     def delete_by_inx(self, inx):
@@ -99,16 +96,19 @@ class LinkedList:
         if self.head is None:
             raise Exception("List is Empty")
         ptr = self.head
-        flag = 0
-        while ptr:
-            if ptr.data == str(val):
+
+        if self.head.data == val:
+            self.head = self.head.next
+            print(f"{val} is Removed")
+            return
+
+        while ptr.next:
+            if ptr.next.data == str(val):
                 ptr.next = ptr.next.next
                 print(f"{val} is Removed")
-                flag = 1
                 return
             ptr = ptr.next
-        if flag == 0:
-            print(f"{val} is not in the List")
+        print(f"{val} is not in the List")
 
 # ---------------------------- Get length of List --------------------------
     def get_length(self):
@@ -180,7 +180,7 @@ while True:
             ll.delete_by_inx(inx)
             print("***********************")
         elif user_input == 7:
-            inx = int(input("Enter Value: "))
+            inx = input("Enter Value: ")
             ll.delete_by_val(inx)
             print("***********************")
         elif user_input == 8:
