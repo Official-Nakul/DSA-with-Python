@@ -55,9 +55,7 @@ class Stack:
     def show(self):
         ptr = self.head
         while ptr:
-            print("|   |")
-            print(f"| {ptr.data} |")
-            print("|___|")
+            print(ptr.data)
             ptr = ptr.next
 
     # ------------ Returns the length of Stack"----------------
