@@ -28,6 +28,6 @@ def merge(num, left, mid, right):
         num[left+i] = temp[i]
 
 
-num = [4, 6, 0, 1, 2, 3, 7, 8, 9, 5]
+num = [4, 6, 0, 1, 2, 3, 7, 8, 9, 5, -1, -3, -4]
 divide(num, 0, len(num)-1)
 print(num)
