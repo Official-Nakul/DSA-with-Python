@@ -7,13 +7,14 @@ class Node:
 class LinkedList:
     def __init__(self) -> None:
         self.head = None
-# ---------------------------- Insert at Start --------------------------
+
+    # ---------------------------- Insert at Start --------------------------
 
     def insert_at_start(self, data):
         node = Node(data, self.head)
         self.head = node
 
-# ---------------------------- Insert at Last --------------------------
+    # ---------------------------- Insert at Last --------------------------
     def insert_at_last(self, data):
         if self.head is None:
             self.head = Node(data, self.head)
@@ -28,7 +29,7 @@ class LinkedList:
             ptr = ptr.next
         ptr.next = Node(data)
 
-# ---------------------------- Insert at Postion --------------------------
+    # ---------------------------- Insert at Position --------------------------
     def insert_at(self, inx, data):
         if inx < 0 or inx > self.get_length():
             raise Exception("Invalid Index")
@@ -44,8 +45,7 @@ class LinkedList:
             ptr = ptr.next
             count += 1
 
-
-# ---------------------------- Search by Index --------------------------
+    # ---------------------------- Search by Index --------------------------
 
     def search_by_inx(self, inx):
         if self.head is None:
@@ -61,7 +61,7 @@ class LinkedList:
             count += 1
             ptr = ptr.next
 
-# ---------------------------- Search by Value --------------------------
+    # ---------------------------- Search by Value --------------------------
     def search_by_Value(self, val):
         if self.head is None:
             raise Exception("List is Empty")
@@ -75,7 +75,7 @@ class LinkedList:
             inx += 1
         print(f"{val} is not in the List")
 
-# ---------------------------- delete by Index --------------------------
+    # ---------------------------- delete by Index --------------------------
     def delete_by_inx(self, inx):
         if self.head is None:
             raise Exception("List is Empty")
@@ -84,14 +84,14 @@ class LinkedList:
         count = 0
         ptr = self.head
         while ptr:
-            if count == inx-1:
+            if count == inx - 1:
                 ptr.next = ptr.next.next
                 print(f"Value at Index {inx} is Removed")
                 return
             count += 1
             ptr = ptr.next
 
-# ---------------------------- delete by Value --------------------------
+    # ---------------------------- delete by Value --------------------------
     def delete_by_val(self, val):
         if self.head is None:
             raise Exception("List is Empty")
@@ -110,7 +110,7 @@ class LinkedList:
             ptr = ptr.next
         print(f"{val} is not in the List")
 
-# ---------------------------- Get length of List --------------------------
+    # ---------------------------- Get length of List --------------------------
     def get_length(self):
         if self.head is None:
             raise Exception("List is Empty")
@@ -121,7 +121,7 @@ class LinkedList:
             ptr = ptr.next
         return count
 
-# ---------------------------- Print the List --------------------------
+    # ---------------------------- Print the List --------------------------
     def show(self):
         if self.head is None:
             raise Exception("List is Empty")
