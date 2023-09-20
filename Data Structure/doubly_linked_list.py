@@ -35,13 +35,13 @@ class LinkedList:
             self.tail.next = node
         self.tail = node
 
-    # ------------------- Insert at the beginning --------------------------------
+    # ------------------- Remove element at given index --------------------------------
     def remove(self, inx):
         if inx < 0 or inx > self.get_length():
             raise Exception("Invalid index")
         if inx == 0:
             self.head = self.head.next
-            self.head.prev=None
+            self.head.prev = None
             return
         elif inx == self.get_length():
             self.tail = self.tail.prev
@@ -53,6 +53,30 @@ class LinkedList:
             if count == inx - 1:
                 ptr.next = ptr.next.next
                 ptr.next.prev = ptr.next.prev.prev
+                return
+            count += 1
+            ptr = ptr.next
+
+    # ------------------- Insert element at given index --------------------------------
+    def insert_at_inx(self, inx, data):
+        if inx < 0 or inx > self.get_length():
+            raise Exception("Invalid index")
+        if inx == 0:
+            self.insert_at_start(data)
+            return
+        elif inx == self.get_length():
+            self.insert_at_end(data)
+            return
+        ptr = self.head
+        count = 0
+        node = Node(data)
+        while ptr:
+            if count == inx - 1:
+                node.next = ptr.next
+                ptr.next = node
+                node.prev = ptr
+                ptr.next.next.prev = node
+
                 return
             count += 1
             ptr = ptr.next
@@ -108,6 +132,8 @@ ll.insert_at_end(8)
 ll.insert_at_end(9)
 ll.insert_at_end(10)
 
-ll.remove(5)
+ll.insert_at_inx(5, 50)
+# ll.remove(10)
+print(f"Length: {ll.get_length()}")
 ll.show_next()
 ll.show_prev()
