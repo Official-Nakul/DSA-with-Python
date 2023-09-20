@@ -22,6 +22,17 @@ class CircularLinkedList:
         node.next = self.head
         self.head = node
 
+    def insert_at_last(self, data):
+        if self.head is None:
+            self.insert_at_start(data)
+            return
+        ptr = self.head
+        node = Node(data)
+        while ptr.next != self.head:
+            ptr = ptr.next
+        ptr.next = node
+        node.next = self.head
+
     def show(self):
         if self.head is None:
             print("List is Empty")
@@ -29,6 +40,7 @@ class CircularLinkedList:
         for i in range(self.get_length()):
             print(ptr.data, end="-->")
             ptr = ptr.next
+        print("Pointing to head")
 
     def get_length(self):
         if self.head is None:
@@ -38,7 +50,7 @@ class CircularLinkedList:
         while ptr.next != self.head:
             count += 1
             ptr = ptr.next
-        return count+1
+        return count + 1
 
 
 ll = CircularLinkedList()
@@ -48,5 +60,6 @@ ll.insert_at_start(3)
 ll.insert_at_start(4)
 ll.insert_at_start(5)
 ll.insert_at_start(6)
-print(ll.get_length())
+ll.insert_at_last(0)
 ll.show()
+print(f"Length: {ll.get_length()}")
