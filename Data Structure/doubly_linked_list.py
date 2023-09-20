@@ -21,8 +21,41 @@ class LinkedList:
         node.next = self.head
         if self.head is not None:
             self.head.prev = node
-
         self.head = node
+
+    # ------------------- Insert at the beginning --------------------------------
+    def insert_at_end(self, data):
+        node = Node(data)
+        if self.head is None and self.tail is None:
+            self.insert_at_start(data)
+            return
+
+        node.prev = self.tail
+        if self.tail is not None:
+            self.tail.next = node
+        self.tail = node
+
+    # ------------------- Insert at the beginning --------------------------------
+    def remove(self, inx):
+        if inx < 0 or inx > self.get_length():
+            raise Exception("Invalid index")
+        if inx == 0:
+            self.head = self.head.next
+            self.head.prev=None
+            return
+        elif inx == self.get_length():
+            self.tail = self.tail.prev
+            self.tail.next = None
+            return
+        ptr = self.head
+        count = 0
+        while ptr:
+            if count == inx - 1:
+                ptr.next = ptr.next.next
+                ptr.next.prev = ptr.next.prev.prev
+                return
+            count += 1
+            ptr = ptr.next
 
     # ------------------- Printing List in reverse order using Prev pointer ---------------
     def show_prev(self):
@@ -34,8 +67,8 @@ class LinkedList:
         while ptr:
             lstr += "<--" + str(ptr.data)
             ptr = ptr.prev
-        lstr = "Null" + lstr + "-->Null"
-        print(f"Printing list using prev Pointer: {lstr}")
+        lstr = "Null" + lstr
+        print(f"Printing list using Prev Pointer: {lstr}")
 
     # ------------------- Printing List in Actual order using Next pointer -----------------------
     def show_next(self):
@@ -47,15 +80,34 @@ class LinkedList:
         while ptr:
             lstr += str(ptr.data) + "-->"
             ptr = ptr.next
-        lstr = "Null<--" + lstr + "Null"
-        print(f"Printing list using next Pointer: {lstr}")
+        lstr = lstr + "Null"
+        print(f"Printing list using Next Pointer: {lstr}")
+
+    # ------------------- Returning Length of list -----------------------
+    def get_length(self):
+        if self.head and self.tail is None:
+            return 0
+        ptr = self.head
+        count = 0
+        while ptr:
+            count += 1
+            ptr = ptr.next
+        return count
 
 
 ll = LinkedList()
-ll.insert_at_start(10)
-ll.insert_at_start(20)
-ll.insert_at_start(30)
-ll.insert_at_start(40)
-ll.insert_at_start(50)
-ll.show_prev()
+ll.insert_at_start(5)
+ll.insert_at_start(4)
+ll.insert_at_start(3)
+ll.insert_at_start(2)
+ll.insert_at_start(1)
+
+ll.insert_at_end(6)
+ll.insert_at_end(7)
+ll.insert_at_end(8)
+ll.insert_at_end(9)
+ll.insert_at_end(10)
+
+ll.remove(5)
 ll.show_next()
+ll.show_prev()
