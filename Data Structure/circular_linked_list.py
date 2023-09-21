@@ -33,6 +33,34 @@ class CircularLinkedList:
         ptr.next = node
         node.next = self.head
 
+    def remove(self, inx):
+        if self.head is None:
+            return
+        if inx == 0:
+            ptr = self.head
+            while ptr.next != self.head:
+                ptr = ptr.next
+            ptr.next = ptr.next.next
+            self.head = self.head.next
+            return
+        if inx == self.get_length() - 1:
+            ptr = self.head
+            count = 0
+            while ptr:
+                if count == inx - 1:
+                    ptr.next = self.head
+                    return
+                count += 1
+                ptr = ptr.next
+        ptr = self.head
+        count = 0
+        while ptr:
+            if count == inx - 1:
+                ptr.next = ptr.next.next
+                return
+            count += 1
+            ptr = ptr.next
+
     def show(self):
         if self.head is None:
             print("List is Empty")
@@ -54,12 +82,21 @@ class CircularLinkedList:
 
 
 ll = CircularLinkedList()
-ll.insert_at_start(1)
-ll.insert_at_start(2)
-ll.insert_at_start(3)
-ll.insert_at_start(4)
 ll.insert_at_start(5)
-ll.insert_at_start(6)
-ll.insert_at_last(0)
+ll.insert_at_start(4)
+ll.insert_at_start(3)
+ll.insert_at_start(2)
+ll.insert_at_start(1)
+ll.insert_at_last(6)
+ll.insert_at_last(7)
+ll.insert_at_last(8)
+ll.insert_at_last(9)
+ll.insert_at_last(10)
+ll.show()
+ll.remove(9)
+ll.show()
+ll.remove(0)
+ll.show()
+ll.remove(2)
 ll.show()
 print(f"Length: {ll.get_length()}")
