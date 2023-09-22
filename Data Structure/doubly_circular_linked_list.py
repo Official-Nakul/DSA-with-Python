@@ -25,6 +25,18 @@ class DoublyCircularLinkedList:
         node.prev = self.tail
         self.head = node
 
+    def insert_at_last(self, data):
+        node = Node(data)
+
+        if self.head is None and self.tail is None:
+            self.insert_at_start(data)
+            return
+        self.tail.next = node
+        node.prev = self.tail
+        node.next = self.head
+        self.head.prev=node
+        self.tail = node
+
     def get_length(self):
         ptr = self.head
         count = 0
@@ -35,7 +47,7 @@ class DoublyCircularLinkedList:
 
     def show_next(self):
         ptr = self.head
-        lstr=""
+        lstr = ""
         for i in range(self.get_length()):
             lstr += str(ptr.data) + "-->"
             ptr = ptr.next
@@ -57,6 +69,9 @@ ll = DoublyCircularLinkedList()
 ll.insert_at_start(3)
 ll.insert_at_start(2)
 ll.insert_at_start(1)
+ll.insert_at_last(4)
+ll.insert_at_last(5)
+ll.insert_at_last(6)
 ll.show_next()
 ll.show_prev()
 print(f"Length: {ll.get_length()}")
