@@ -4,7 +4,7 @@ class Node:
         self.next = next
 
 
-class Queue:
+class Queue1:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -55,12 +55,12 @@ class Queue:
         print("Null")
 
 
-q = Queue()
+q = Queue1()
 
 q.enqueue(10)
 q.enqueue(20)
 q.enqueue(30)
 q.enqueue(40)
+q.display()
 print(q.dequeue())
 print(q.get_length())
-q.display()
